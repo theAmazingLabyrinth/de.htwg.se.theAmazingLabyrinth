@@ -11,4 +11,8 @@ public class player {
 		name = s;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 }
