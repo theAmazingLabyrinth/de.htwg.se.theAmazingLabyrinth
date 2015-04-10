@@ -2,7 +2,7 @@ package de.htwg.se.theAmazingLabyrinth.model;
 
 public class token {
 	String name = "";
-	int[] ways = new int[4];
+	int[] ways = new int[4]; /* {North, East, South, West} */
 
 	public token() {
 		name = "standard token";
