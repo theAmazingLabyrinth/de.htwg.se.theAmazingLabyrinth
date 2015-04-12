@@ -15,4 +15,11 @@ public class token {
 		this.ways = ways;
 		this.end = end;
 	}
+
+	public int getWay(int way) {
+		if(way < 4 && way >= 0) 
+			return ways[way];
+		else
+			return -1;
+	}
 }
