@@ -1,4 +1,4 @@
-package de.htwg.se.theAmazingLabyrinth.model;
+package de.htwg.theAmazingLabyrinth.model;
 
 public class token {
 	String name = ""; /* name of the token (L-Token, I-Token, T-Token or X-Token(4way))*/
@@ -6,10 +6,10 @@ public class token {
 	int end; /* specified if this token is a siegetoken and which it is */
 
 	public token() {
-		token("standard token", {1,1,1,1}, 0);
+		this("standard token", new int[]{1,1,1,1}, 0);
 	}
 
-	public token(String name, int[4] ways, int end) {
+	public token(String name, int[] ways, int end) {
 		this.name = name;
 		this.ways = ways;
 		this.end = end;

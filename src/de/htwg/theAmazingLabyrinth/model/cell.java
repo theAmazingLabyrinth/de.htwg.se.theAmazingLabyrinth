@@ -1,4 +1,4 @@
-package de.htwg.se.theAmazingLabyrinth.model;
+package de.htwg.theAmazingLabyrinth.model;
 
 public class cell {
 
