@@ -29,4 +29,8 @@ public class token {
 	public String getName() {
 		return name;
 	}
+	
+	public int getEnd() {
+		return end;
+	}
 }

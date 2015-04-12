@@ -19,17 +19,21 @@ public class TokenTest {
 	@Test
 	public void testGetWay() {
 		for(int i = 0; i < 3; i ++) {
-			assertEquals(0, Token.getWay(0));
+			assertEquals(1, Token.getWay(0));
 			assertEquals(0, Token.getWay(1));
-			assertEquals(0, Token.getWay(-1));
-			assertEquals(0, Token.getWay(5));
+			assertEquals(-1, Token.getWay(-1));
+			assertEquals(-1, Token.getWay(5));
 		}
 	} 
 	
 	@Test
 	public void testGetName() {
 		assertEquals("standard token", StandardToken.getName());
-		assertEquals("another token", StandardToken.getName());
+	}
+	
+	@Test
+	public void testGetEnd() {
+		assertEquals(0, Token.getEnd());
 	}
 
 
