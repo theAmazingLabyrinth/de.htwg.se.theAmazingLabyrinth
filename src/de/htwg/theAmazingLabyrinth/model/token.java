@@ -6,9 +6,7 @@ public class token {
 	int end;
 
 	public token() {
-		name = "standard token";
-		ways = {1,1,1,1};
-		end = 0;
+		token("standard token", {1,1,1,1}, 0);
 	}
 	public token(String name, int[4] ways, int end) {
 		this.name = name;
