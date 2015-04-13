@@ -4,7 +4,7 @@ public class desk {
 
 	token map[][];
 	
-	/* makes a new standardmap */
+	/* makes a new standardmap and add the not moveable tokens */
 	public desk() {
 		map = new token[7][7];
 		map[0][0] = new token("L-Token", new int[]{0,1,1,0}, 0);
