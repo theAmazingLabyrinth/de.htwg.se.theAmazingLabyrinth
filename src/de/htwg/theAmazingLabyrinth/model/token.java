@@ -1,7 +1,7 @@
 package de.htwg.theAmazingLabyrinth.model;
 
 public class token {
-	String name = ""; /* name of the token (L-Token, I-Token, T-Token or X-Token(4way))*/
+	String name = ""; /* name of the token (L-Token, I-Token or T-Token */
 	int[] ways = new int[4]; /* {North, East, South, West} */
 	int end; /* specified if this token is a siegetoken and which it is */
 

@@ -17,8 +17,8 @@ public class DeskTest {
 	
 	
 	@Test
-	public void deskTest() {
-		fail("Not yet implemented");
+	public void newMapTest() {
+		assertEquals(true, Desk.newMap());
 	}
 
 }
