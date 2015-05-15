@@ -2,11 +2,17 @@ package de.htwg.theAmazingLabyrinth.model;
 
 public class desk {
 
-	//Test------------------------>
-	int size = 1;
-	
-	public int getSize(){
-		return size;
-	}
-	//<----------------------------
+	public desk(){
+        createFixTokens();
+    }
+
+
+    public boolean createMoveableTokens(){
+
+        return false;
+    }
+    public boolean createFixTokens(){
+
+        return false;
+    }
 }
