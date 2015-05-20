@@ -16,7 +16,6 @@ public class token {
 	}
 
 	/* returns 1 if way is an way or 0 if way is a wall */
-
 	public int getWay(int way) {
 		if(way < 4 && way >= 0) 
 			return ways[way];
@@ -25,12 +24,84 @@ public class token {
 	}
 
 	/* returns the name of the token */
-
 	public String getName() {
 		return name;
 	}
 	
 	public int getEnd() {
 		return end;
+	}
+
+    //Prototyp!
+    /* spin a token (from left to right) */
+    public int[] spin(int[] ways){
+        ways[0] = ways[3];
+        for(int i = 1; i <= 3; i++){
+            ways[i] = ways[i - 1];
+        }
+        return ways;
+    }
+
+    //Prototyp!
+    /*return random ways for a token */
+	public int[] randomWays(int token){
+		// 	0 == "I-Token" ; 1 == "L-Token" ; 2 == "T-Token"
+		int[] ways;
+		switch(token){
+			case 0:{
+				ways[0] = (int)(Math.random()*2);
+				if(ways[0] == 0){
+					ways[1] = 1;
+					ways[2] = 0;
+					ways[3] = 1;
+				} else {
+					ways[1] = 0;
+					ways[2] = 1;
+					ways[3] = 0;
+				}
+				break;
+			}
+			case 1:{
+				ways[0] = (int)(Math.random()*2);
+				ways[1] = (int)(Math.random()*2);
+				if(ways[0] == 0 && ways[1] == 0){
+					ways[2] = 1;
+					ways[3] = 1;
+				} else if(ways[0] == 0 && ways[1] == 1){
+					ways[2] = 1;
+					ways[3] = 0;
+				} else if(ways[0] == 1 && ways[1] == 0){
+					ways[2] = 0;
+					ways[3] = 1;
+				} else {
+					ways[2] = 0;
+					ways[3] = 0;
+				}
+				break;
+			}
+			case 2:{
+				ways[0] = (int)(Math.random()*2);
+				if(ways[0] == 0){
+					ways[1] = 1;
+					ways[2] = 1;
+					ways[3] = 1;
+				} else {
+					ways[1] = (int)(Math.random()*2);
+					if(ways[1] == 0){
+						ways[2] = 1;
+						ways[3] = 1;
+					} else {
+						ways[2] = (int)(Math.random() *2);
+						if(ways[2] == 0){
+							ways[3] = 1;
+						} else {
+							ways[3] = 0;
+						}
+					}
+				}
+			}
+
+		}
+		return ways;
 	}
 }
