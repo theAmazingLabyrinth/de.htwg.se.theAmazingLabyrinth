@@ -16,6 +16,8 @@ public class playerTest {
         player1 = new player();
         player2 = new player("Player 2");
         player3 = new player("Player 3");
+        player1.setToken(1);
+        player2.setToken(2);
     }
 
     @Test
@@ -23,5 +25,12 @@ public class playerTest {
         assertEquals("Standard", player1.getName());
         assertNotEquals(player2.getName(),player3.getName());
     }
+/*
+    @Test
+    public void testGetToken() {
+        assertEquals(1, player1.getToken().getEnd());
+        assertEquals(2, player1.getToken().getEnd());
 
+    }
+*/
 }
