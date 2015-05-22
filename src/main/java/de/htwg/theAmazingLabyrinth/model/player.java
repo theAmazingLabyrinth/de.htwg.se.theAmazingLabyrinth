@@ -4,14 +4,17 @@ public class player {
 	String name = "";
 
 	public player() {
-		name = "Standard";
+
+        name = "Standard";
 	}
 
-	public player(String s) {
+	public player(String s)
+    {
 		name = s;
 	}
 
-	public String getName() {
+	public String getName()
+    {
 		return name;
 	}
 
