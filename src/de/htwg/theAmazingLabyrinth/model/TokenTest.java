@@ -27,11 +27,21 @@ public class TokenTest {
 	}
 
 	@Test
-	public void spin(){
+	public void testSpin(){
         int[] token = {1,0,1,0};
 		int[] test = {0,1,0,1};
 		assertEquals(test, Token.spin(token));
 	}
+
+    @Test
+    public testRandomWays(){
+        token Token2 = new token("TestToken2", new int[] = token.randomWays(), 0);
+        int test;
+        for(int i = 0; i < 4; i++){
+            test = Token2.getWay(i);
+            assertTrue(test == 0 || test == 1);
+        }
+    }
 
 	@Test
 	public void testGetName() {
