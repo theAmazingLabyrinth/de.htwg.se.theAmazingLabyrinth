@@ -35,9 +35,9 @@ public class token {
     //Prototyp!
     /* spin a token (from left to right) */
     public int[] spin(int[] ways){
-        ways[0] = ways[3];
-        for(int i = 1; i <= 3; i++){
-            ways[i] = ways[i - 1];
+        ways[3] = ways[0];
+        for(int i = 0; i <= 2; i++){
+            ways[i] = ways[i + 1];
         }
         return ways;
     }

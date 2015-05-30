@@ -24,8 +24,15 @@ public class TokenTest {
 			assertEquals(-1, Token.getWay(-1));
 			assertEquals(-1, Token.getWay(5));
 		}
-	} 
-	
+	}
+
+	@Test
+	public void spin(){
+        int[] token = {1,0,1,0};
+		int[] test = {0,1,0,1};
+		assertEquals(test, Token.spin(token));
+	}
+
 	@Test
 	public void testGetName() {
 		assertEquals("standard token", StandardToken.getName());
