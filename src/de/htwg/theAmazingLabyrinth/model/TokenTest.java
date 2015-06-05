@@ -24,13 +24,30 @@ public class TokenTest {
 			assertEquals(-1, Token.getWay(-1));
 			assertEquals(-1, Token.getWay(5));
 		}
-	} 
-	
+	}
+
+	@Test
+	public void testSpin(){
+		int[] token = {1,0,1,0};
+		int[] test = {0,1,0,1};
+		assertEquals(test, Token.spin(token));
+	}
+
+	@Test
+	public testRandomWays(){
+		token Token2 = new token("TestToken2", new int[] = token.randomWays(), 0);
+		int test;
+		for(int i = 0; i < 4; i++){
+			test = Token2.getWay(i);
+			assertTrue(test == 0 || test == 1);
+		}
+	}
+
 	@Test
 	public void testGetName() {
 		assertEquals("standard token", StandardToken.getName());
 	}
-	
+
 	@Test
 	public void testGetEnd() {
 		assertEquals(0, Token.getEnd());
