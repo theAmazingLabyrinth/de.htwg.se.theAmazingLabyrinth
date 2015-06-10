@@ -1,9 +1,9 @@
 package de.htwg.theAmazingLabyrinth.model;
 
 public class token {
-	String name = ""; /* name of the token (L-Token, I-Token or T-Token */
-	int[] ways = new int[4]; /* {North, East, South, West} */
-	int end; /* specified if this token is a siegetoken and which it is */
+	private String name = ""; /* name of the token (L-Token, I-Token or T-Token */
+	private int[] ways = new int[4]; /* {North, East, South, West} */
+	private int end; /* specified if this token is a siegetoken and which it is */
 
 	public token() {
 		this("standard token", new int[]{1, 1, 1, 1}, 0);
@@ -16,9 +16,9 @@ public class token {
 	}
 
     /*The Constructor for the randomToken. */
-    public token(String name, int end){
+    public token(String name, int token, int end){
         this.name = name;
-        this.ways = createRandomToken();
+        this.ways = createRandomToken(token);
         this.end = end;
     }
 
@@ -50,9 +50,8 @@ public class token {
 
     /*creates a random Token */
     private int[] createRandomToken(int token){
-        randomWay = new RandomWayToken(token);
-        int[] ways = randomWay.getWays;
-        return ways;
+        randomWays rways = new randomWays(token);
+		return rways.getWays();
     }
 
 }
