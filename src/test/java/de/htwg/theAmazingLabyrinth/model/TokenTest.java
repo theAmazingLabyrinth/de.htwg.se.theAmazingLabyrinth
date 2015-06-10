@@ -34,7 +34,7 @@ public class TokenTest {
     }
 
     @Test
-    public testRandomWays(){
+    public void testRandomWays(){
         token Token2 = new token("TestToken2", 0);
         int test;
         for(int i = 0; i < 4; i++){
