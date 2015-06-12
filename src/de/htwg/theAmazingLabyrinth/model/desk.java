@@ -34,7 +34,7 @@ public class desk {
             if (a = 0 && a <= maxItoken){names[i] = "I-Token";itoken++;}
             if (a = 1 && a <= maxLtoken){names[i] = "L-Token";ltoken++;}
             if (a = 2 && a <= maxTtoken){names[i] = "T-Token";ttoken++;}
-            if(itoken == MAXITOKEN; ltoken == MAXLTOKEN; ttoken == MAXTTOKEN){all = true;}
+            if(itoken == MAXITOKEN && ltoken == MAXLTOKEN && ttoken == MAXTTOKEN){all = true;}
         }
 
         boolean b_first = createFirstHalf(s);
@@ -47,7 +47,7 @@ public class desk {
         for(int i = 0; i <= 6; i+2){
             for(int j = 1; j <= 3; j++) {
                 if(getInt(s) == 2){
-                    standardDesk[i][(j*2)-1]=new token(s, getInt(s), mark[marknr]);
+                    standardDesk[i][(j*2)-1] = new token(s, getInt(s), mark[marknr]);
                     marknr++;
                 } else {standardDesk[i][(j*2)-1] = new token(s, getInt(s), 0);
             }
@@ -63,7 +63,7 @@ public class desk {
         for(int i = 1; i <= 5; i++){
             for(int j = 0; j <= 6; j++){
                 if(getInt(s) == 2){
-                    standardDesk[i][(j*2)-1]=new token(s, getInt(s), mark[marknr]);
+                    standardDesk[i][(j*2)-1] = new token(s, getInt(s), mark[marknr]);
                     marknr++;
                 } else {standardDesk[i][(j*2)-1] = new token(s, getInt(s), 0);
             }
