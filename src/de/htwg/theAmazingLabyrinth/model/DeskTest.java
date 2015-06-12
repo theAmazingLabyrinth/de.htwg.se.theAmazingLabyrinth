@@ -15,10 +15,15 @@ public class DeskTest {
 		Desk = new desk();
 	}
 	
-	
+	/*
 	@Test
 	public void newMapTest() {
 		assertEquals(true, Desk.newMap());
+	}*/
+
+	@Test
+	public void getMapTest(){
+		assertEquals(token[7][7], Desk.getMap());
 	}
 
 }
