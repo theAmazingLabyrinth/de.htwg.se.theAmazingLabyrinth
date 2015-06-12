@@ -41,4 +41,8 @@ public class desk {
         standardDesk[6][6] = new token("L-Token",new int[]{1,0,0,1},4);
         return true;
     }
+
+    public token[][] getstandardDesk(){
+        return standardDesk;
+    }
 }
