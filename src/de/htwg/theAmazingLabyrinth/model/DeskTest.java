@@ -22,8 +22,8 @@ public class DeskTest {
 	}*/
 
 	@Test
-	public void getStandardMapTest(){
-		assertEquals(token[7][7], Desk.getStandardMap());
+	public void getStandardDeskTest(){
+		assertEquals(token[7][7], Desk.getStandardDesk());
 	}
 
 }
