@@ -7,9 +7,9 @@ public class desk {
     private int deskSide;
     private int mark[] = new int[24]; /* the array to count the special tokens, 1-4 = start places*/
     private int markNr = 0; /*reader of the mark-array*/
-    private int MAXITOKEN = 12;       //max. I - Tokens
-    private int MAXLTOKEN = 14;       //max. L - Tokens
-    private int MAXTTOKEN = 6;        //max. T - Token
+    private int MAXITOKEN;       //max. I - Tokens
+    private int MAXLTOKEN;       //max. L - Tokens
+    private int MAXTTOKEN;        //max. T - Token
 
     /*Initialising*/
     public desk(int deskLength){
@@ -115,5 +115,9 @@ public class desk {
     /*return the desk*/
     public token[] getStandardDesk(){
         return standardDesk;
+    }
+
+    public boolean newMap(){
+        return true;
     }
 }
