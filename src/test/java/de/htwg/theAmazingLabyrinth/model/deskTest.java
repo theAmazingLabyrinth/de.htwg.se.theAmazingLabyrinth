@@ -7,16 +7,19 @@ import org.junit.Test;
 
 public class deskTest {
 
-    desk deskOne;
 
-    @Before
-    public void setUp() throws Exception {
-        deskOne = new desk();
-    }
+	desk Desk;
 
-    @Test
-    public void testCreateFixTokens() {
-            assertEquals(true, deskOne.createFixTokens());
-    }
+	@Before
+	public void setUp() throws Exception {
+		Desk = new desk(7);
+	}
+	
+
+
+	@Test
+	public void newMapTest() {
+		assertEquals(true, Desk.newMap());
+	}
 
 }
