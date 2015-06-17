@@ -13,17 +13,36 @@ public class playerTest {
 
     @Before
     public void setUp() throws Exception {
-        player1 = new player();
-        player2 = new player("Player 2");
-        player3 = new player("Player 3");
-        player1.setToken(1);
-        player2.setToken(2);
+        int[] marks = {1,2,3,4,5};
+        player1 = new player(marks);
+        player2 = new player("Player 2", marks);
+        player3 = new player("Player 3", marks);
+        //player1.setToken(1);
+        //player2.setToken(2);
     }
 
     @Test
     public void testGetName() {
         assertEquals("Standard", player1.getName());
         assertNotEquals(player2.getName(),player3.getName());
+    }
+
+    @Test
+    public void testGetMark(){
+        int[] a = {1,2,3,4,5};
+        assertEquals(a, player1.getMarks());
+        assertEquals(a, player2.getMarks());
+    }
+
+    @Test
+    public void testSetMark(){
+        int[] old = {1,2,3,4,5};
+        int[] newer = {5,4,3,2,1};
+        player1.setMarks(newer);
+        player3.setMarks(newer);
+        assertEquals(newer, player1.getMarks());
+        assertEquals(newer, player3.getMarks());
+        assertNotEquals(old, player1.getMarks());
     }
 /*
     @Test
