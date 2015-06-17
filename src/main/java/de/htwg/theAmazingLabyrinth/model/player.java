@@ -4,7 +4,7 @@ public class player {
 	String name = "";
 
 	public player() {
-		name = "Standard"
+		name = "Standard";
 	}
 
 	public player(String s) {
