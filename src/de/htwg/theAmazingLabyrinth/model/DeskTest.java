@@ -12,7 +12,7 @@ public class DeskTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Desk = new desk();
+		Desk = new desk(7);
 	}
 	
 	/*

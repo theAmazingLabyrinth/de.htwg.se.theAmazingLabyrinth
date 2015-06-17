@@ -8,7 +8,7 @@ public class desk {
     private token[] standardDesk;
     private int desklength;
     private int mark[] = new mark[24]; /* the array to count the special tokens, 1-4 = startplaces*/
-    private int marknr = 0; /*reader of the mark - array*/
+    private int marknr = 0; /*reader of the mark-array*/
 
     /*Initialising*/
     public desk(int deskLength){
@@ -21,7 +21,6 @@ public class desk {
         }
     }
 
-    //Prototyp!
     /*create all moveable Tokens on the Table by Initialising*/
     private boolean createMoveableTokens(){
         final int MAXITOKEN = 12;       //max. I - Tokens
@@ -32,11 +31,11 @@ public class desk {
         boolean b_all;                  //counter if all tokens are created
         int itoken; ltoken, ttoken;     //tokencounter
 
-        for(int i = 0;b_all != false;i++){
+        for(int i = 0;b_all == false;i++){
             a = (int) (Math.random() * 2);
-            if (a = 0 && a <= maxItoken){names[i] = "I-Token";itoken++;}
-            if (a = 1 && a <= maxLtoken){names[i] = "L-Token";ltoken++;}
-            if (a = 2 && a <= maxTtoken){names[i] = "T-Token";ttoken++;}
+            if (a = 0 && a <= MAXITOKEN){names[i] = "I-Token";itoken++;}
+            if (a = 1 && a <= MAXLTOKEN){names[i] = "L-Token";ltoken++;}
+            if (a = 2 && a <= MAXTTOKEN){names[i] = "T-Token";ttoken++;}
             if(itoken == MAXITOKEN && ltoken == MAXLTOKEN && ttoken == MAXTTOKEN){b_all = true;}
         }
 
@@ -44,14 +43,18 @@ public class desk {
     }
 }
 
-    /* create the first 12 moveable tokens */
+    /* second class to create moveable tokens */
     private boolean createMTokens(String[] names) {
 
         int namecounter = 0;
         int i = 0;
         int roundcounter = 1;
+        boolean rount = true;
         while (i <= desklength) {
-            if (rountcounter % 7 == 0) {
+            if(i = 0 || (roundcounter % 2 == 0) && (roundcounter % (desklength/desklength) == 0)) {
+                i++;
+            }
+            if (rountcounter % (desklength/desklength) == 0) {
                 if (rount == true) {rount = false;}
                 else {rount = true;}
             }
@@ -101,6 +104,7 @@ public class desk {
         return true;
     }
 
+    /*return the desk*/
     public token[]getstandardDesk(){
         return standardDesk;
     }
