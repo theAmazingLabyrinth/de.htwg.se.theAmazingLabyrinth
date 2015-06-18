@@ -37,9 +37,8 @@ public class playerTest {
     @Test
     public void testSetMark(){
         int[] old = {1,2,3,4,5};
-        int[] newer = {5,4,3,2,1};
-        player1.setMarks(newer);
-        player3.setMarks(newer);
+        int[] newer = {1,2,0,4,5};
+        player1.deleteMark(3);
         assertEquals(newer, player1.getMarks());
         assertEquals(newer, player3.getMarks());
         assertNotEquals(old, player1.getMarks());
