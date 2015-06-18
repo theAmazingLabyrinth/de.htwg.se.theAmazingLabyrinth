@@ -1,7 +1,6 @@
 package de.htwg.theAmazingLabyrinth.model;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ public class TokenTest {
 
     @Before
     public void setUp() throws Exception {
-        Token = new token("TestToken", new int[]{1,0,1,0}, 0);
+        Token = new token("TestToken", new int[]{1,0,1,0}, 0, true);
         StandardToken = new token();
     }
 
@@ -35,7 +34,7 @@ public class TokenTest {
 
     @Test
     public void testRandomWays(){
-        token Token2 = new token("TestToken2", 0, 0);
+        token Token2 = new token("TestToken2", 0, 0, false);
         int test;
         for(int i = 0; i < 4; i++){
             test = Token2.getWay(i);
@@ -53,5 +52,9 @@ public class TokenTest {
         assertEquals(0, Token.getEnd());
     }
 
-
+    @Test
+    public void testGetMoveable(){
+        assertEquals(true, Token.getMoveable());
+        assertNotEquals(true, StandardToken.getMoveable());
+    }
 }
