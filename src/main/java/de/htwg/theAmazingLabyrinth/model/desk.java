@@ -63,7 +63,7 @@ public class desk {
                 if (round) {round = false;}
                 else {round = true;}
             }
-            standardDesk[i] = new token(names[nameCounter], getInt(names[nameCounter]), getMarkNr(names[nameCounter]));
+            standardDesk[i] = new token(names[nameCounter], getInt(names[nameCounter]), getMarkNr(names[nameCounter]), true);
             nameCounter++;
             roundCounter++;
             if (round){i += 2;}
@@ -93,22 +93,22 @@ public class desk {
 
     /* creates all fix Tokens on the Table by Initialising */
     private boolean createFixTokens(){
-        standardDesk[0] = new token("L-Token",new int[]{0,1,1,0},1);
-        standardDesk[2] = new token("T-Token",new int[]{0,1,1,1},5);
-        standardDesk[4] = new token("T-Token",new int[]{0,1,1,1},6);
-        standardDesk[6] = new token("L-Token",new int[]{0,0,1,1},2);
-        standardDesk[14] = new token("T-Token",new int[]{1,1,1,0},7);
-        standardDesk[16] = new token("T-Token",new int[]{0,1,1,1},8);
-        standardDesk[18] = new token("T-Token",new int[]{1,0,1,1},9);
-        standardDesk[20] = new token("T-Token",new int[]{1,0,1,1},10);
-        standardDesk[28] = new token("T-Token",new int[]{1,1,1,0},11);
-        standardDesk[30] = new token("T-Token",new int[]{1,1,1,0},12);
-        standardDesk[32] = new token("T-Token",new int[]{1,1,0,1},13);
-        standardDesk[34] = new token("T-Token",new int[]{1,0,1,1},14);
-        standardDesk[42] = new token("L-Token",new int[]{1,1,0,0},3);
-        standardDesk[44] = new token("T-Token",new int[]{1,1,0,1},15);
-        standardDesk[46] = new token("T-Token",new int[]{1,1,0,1},16);
-        standardDesk[48] = new token("L-Token",new int[]{1,0,0,1},4);
+        standardDesk[0] = new token("L-Token",new int[]{0,1,1,0},1, false);
+        standardDesk[2] = new token("T-Token",new int[]{0,1,1,1},5, false);
+        standardDesk[4] = new token("T-Token",new int[]{0,1,1,1},6, false);
+        standardDesk[6] = new token("L-Token",new int[]{0,0,1,1},2, false);
+        standardDesk[14] = new token("T-Token",new int[]{1,1,1,0},7, false);
+        standardDesk[16] = new token("T-Token",new int[]{0,1,1,1},8, false);
+        standardDesk[18] = new token("T-Token",new int[]{1,0,1,1},9, false);
+        standardDesk[20] = new token("T-Token",new int[]{1,0,1,1},10, false);
+        standardDesk[28] = new token("T-Token",new int[]{1,1,1,0},11, false);
+        standardDesk[30] = new token("T-Token",new int[]{1,1,1,0},12, false);
+        standardDesk[32] = new token("T-Token",new int[]{1,1,0,1},13, false);
+        standardDesk[34] = new token("T-Token",new int[]{1,0,1,1},14, false);
+        standardDesk[42] = new token("L-Token",new int[]{1,1,0,0},3, false);
+        standardDesk[44] = new token("T-Token",new int[]{1,1,0,1},15, false);
+        standardDesk[46] = new token("T-Token",new int[]{1,1,0,1},16,false);
+        standardDesk[48] = new token("L-Token",new int[]{1,0,0,1},4, false);
         return true;
     }
 
