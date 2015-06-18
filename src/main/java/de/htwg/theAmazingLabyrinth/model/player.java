@@ -2,7 +2,7 @@ package de.htwg.theAmazingLabyrinth.model;
 
 public class player {
 	private String name = "";
-    private int marks[] = new int[200];
+    private int marks[] = new int[Integer.MAX_VALUE];
 
     //private token siegeToken; //Test
 
@@ -17,16 +17,23 @@ public class player {
         this.marks = marks;
 	}
 
+    /* return Name */
 	public String getName() {
         return name;
 	}
 
+    /* return marks[] */
     public int[] getMarks(){
         return marks;
     }
 
-    public void setMarks(int[] marks){
-        this.marks = marks;
+    /* set a deleted Mark to zero */
+    public void deleteMark(int mark) {
+        for (int i = 0; i < marks.length; i++) {
+            if (marks[i] == mark) {
+                marks[i] = 0;
+            }
+        }
     }
 
     /*
