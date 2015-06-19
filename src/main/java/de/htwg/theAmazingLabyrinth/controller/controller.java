@@ -3,19 +3,21 @@ package de.htwg.theAmazingLabyrinth.controller;
 
 import de.htwg.theAmazingLabyrinth.model.desk;
 import de.htwg.theAmazingLabyrinth.model.token;
+import de.htwg.theAmazingLabyrinth.model.player;
 import java.util.HashMap;
 import java.util.Map;
 
 public class controller {
 
     private Map<Integer, token> token = new HashMap<Integer, token>();
-    private Map<Integer, String> player = new HashMap<Integer, String>();
+    private Map<Integer, player> player = new HashMap<Integer, player>();
     private token freeToken;
     private int tokenNumbers;
     private int anzPlayer;
     private desk Desk;
     private token Token;
     private moveTokenController mtoken;
+    private player Player;
 
     public controller(int anzPlayer, int tokenNumbers, token freeToken){
         this.anzPlayer = anzPlayer;
@@ -38,13 +40,13 @@ public class controller {
             return false;
         }
         if(anzPlayer == 3){
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, "Player 3");
+            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 1"));
         } else if(anzPlayer == 4) {
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, "Player 3");
-            player.put((tokenNumbers * tokenNumbers)-1, "Player 4");
+            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 3"));
+            player.put((tokenNumbers * tokenNumbers)-1, new player("Player 4"));
         }
-        player.put(0, "Player 1");
-        player.put(tokenNumbers -1, "Player 2");
+        player.put(0, new player("Player 1"));
+        player.put(tokenNumbers -1, new player("Player 2"));
         return true;
     }
 
@@ -80,5 +82,10 @@ public class controller {
         mtoken.testMovePlayer(startToken, jumpPoint);
     }
 
+
+    public void movePlayer(player Player){
+        token.get(Player.getPosition());
+
+    }
 
 }

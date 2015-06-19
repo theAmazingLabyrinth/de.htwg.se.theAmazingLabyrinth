@@ -1,6 +1,7 @@
 package de.htwg.theAmazingLabyrinth.controller;
 
 import de.htwg.theAmazingLabyrinth.model.token;
+import de.htwg.theAmazingLabyrinth.model.player;
 
 import java.util.Map;
 
@@ -8,10 +9,10 @@ public class moveTokenController {
     private int[] a = {1,0,1,0};
     private token freeToken = new token("freeToken", a, 0, true);
     private Map<Integer, token> token;
-    private Map<Integer, String> player;
+    private Map<Integer, player> player;
 
 
-    public moveTokenController(Map<Integer, token> token, Map<Integer, String> player){
+    public moveTokenController(Map<Integer, token> token, Map<Integer, player> player){
         this.token = token;
         this.player = player;
     }
@@ -58,10 +59,10 @@ public class moveTokenController {
 
     /*Method test if a player is on the token with get the new freeToken*/
     public void testMovePlayer(int lastPoint, int jumpPoint){
-        String pl = player.get(lastPoint);
+        player pl = player.get(lastPoint);
         if(player.get(jumpPoint) != null) {
             player.put(lastPoint, pl);
-            player.put(jumpPoint, " ");
+            player.remove(jumpPoint);
         }
     }
 }

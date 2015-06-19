@@ -3,6 +3,7 @@ package de.htwg.theAmazingLabyrinth.model;
 public class player {
 	private String name = "";
     private int marks[] = new int[Integer.MAX_VALUE];
+    private int position = 0;
 
     //private token siegeToken; //Test
 
@@ -12,9 +13,8 @@ public class player {
         this.marks = marks;
 	}
 
-	public player(String s, int[] marks) {
+	public player(String s) {
         name = s;
-        this.marks = marks;
 	}
 
     /* return Name */
@@ -34,6 +34,17 @@ public class player {
                 marks[i] = 0;
             }
         }
+    }
+
+    public void setPosition(int position){
+        this.position = position;
+    }
+
+    public int getPosition(){
+        return position;
+    }
+    public void setMarks(int[] marks){
+        this.marks = marks;
     }
 
     /*
