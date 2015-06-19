@@ -8,25 +8,21 @@ import java.util.Map;
 
 public class controller {
 
-    private Map<Integer, token> token;
-    private Map<Integer, String> player;
+    private Map<Integer, token> token = new HashMap<Integer, token>();
+    private Map<Integer, String> player = new HashMap<Integer, String>();
     private token freeToken;
-    private int deskLength;
     private int tokenNumbers;
     private int anzPlayer;
-    private boolean b_player;
     private desk Desk;
     private token Token;
+    private moveTokenController mtoken;
 
     public controller(int anzPlayer, int tokenNumbers, token freeToken){
         this.anzPlayer = anzPlayer;
         this.tokenNumbers = tokenNumbers;
-        token = new HashMap<Integer, token>();
-        player = new HashMap<Integer, String>();
         Desk = new desk(this.tokenNumbers);
         this.freeToken = freeToken;
         createTokenMap();
-        b_player = createPlayerMap(this.anzPlayer);
     }
 
     private void createTokenMap(){
@@ -55,36 +51,34 @@ public class controller {
     /* move token */
     public boolean moveToken(int startToken){
         token tmp = token.get(startToken);
-        int counter = startToken;
         token oldFreeToken = freeToken;
+        int Numbers = tokenNumbers - 1;
         if(tmp.getMoveable()){
-            if((startToken%tokenNumbers) == 0){             //If moved from left to right
-                freeToken = token.get((counter + tokenNumbers)-2);
-                for(int i = tokenNumbers; i > 1; i--){
-                    token.put((counter + tokenNumbers) - 2, token.get((counter + tokenNumbers)-3));
-                    counter--;
-                }
-            }else if(((startToken+1)%tokenNumbers) == 0){         //If moved from right to left
-                freeToken = token.get(counter - 1);
-                for(int i = 1; i < tokenNumbers; i++){
-                    token.put(counter - 1, token.get(counter));
-                    counter++;
-                }
-            }else if(startToken < tokenNumbers){                    //If moved from top to bottom
-                freeToken = token.get(counter + ((tokenNumbers -1) * tokenNumbers) - 2);
-                for(int i = 1; i < tokenNumbers; i++){
-                    token.put(counter + ((tokenNumbers - i) * tokenNumbers) - 2 , token.get(counter + ((tokenNumbers - (i+1)) * tokenNumbers) - 2));
-                }
-            }else if(startToken > ((tokenNumbers- 1) * tokenNumbers)){  //If moved from bottom to top
-                freeToken = token.get(counter - ((tokenNumbers - 1) * tokenNumbers) - 1);
-                for(int i = 1; i < tokenNumbers; i++) {
-                    token.put((counter - ((tokenNumbers - i) * tokenNumbers) - 2), token.get(counter - ((tokenNumbers - i) * tokenNumbers) - 2));
-                }
-            }
-            token.put(counter, oldFreeToken);
+            testWay(startToken, Numbers);
+            token.put(startToken, oldFreeToken);
             return true;
         }
         return false;
     }
+
+    /*Method test witch way the token get moved */
+    private void testWay(int startToken, int Numbers){
+        int jumpPoint = 0;
+        mtoken = new moveTokenController(token, player);
+        if((startToken%Numbers + 1) == 0 && Token.getMoveable()) { //If moved from left to right
+            jumpPoint = mtoken.moveTokenToRight(startToken, Numbers);
+        }
+        if(((startToken+1)%Numbers + 1) == 0 && Token.getMoveable()){ //If moved from right to left
+            jumpPoint = mtoken.moveTokenToLeft(startToken, Numbers);
+        }
+        if(startToken < Numbers + 1  && Token.getMoveable()){       //If moved from top to bottom
+            jumpPoint = mtoken.moveTokenToBottom(startToken, Numbers);
+        }
+        if(startToken > (Numbers * (Numbers + 1)) && Token.getMoveable()){  //If moved from bottom to top
+            jumpPoint = mtoken.moveTokenToTop(startToken, Numbers);
+        }
+        mtoken.testMovePlayer(startToken, jumpPoint);
+    }
+
 
 }
