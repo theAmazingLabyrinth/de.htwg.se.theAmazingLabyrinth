@@ -4,12 +4,8 @@ import de.htwg.theAmazingLabyrinth.model.token;
 import de.htwg.theAmazingLabyrinth.model.player;
 import java.util.HashMap;
 import java.util.Map;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class movePlayerController{
-    private token oldToken;
-    private token newToken;
     private player Player;
     private Map<Integer, player> player = new HashMap<Integer, player>();
     private Map<Integer, token> token = new HashMap<Integer, token>();
@@ -26,13 +22,13 @@ public class movePlayerController{
 
     /*Method move the player*/
     public int movePl(String Eingabe){
-        if(Eingabe == "W"){
+        if(Eingabe.equals("W")){
             setPlayerPos(Eingabe);
-        } else if(Eingabe == "D"){
+        } else if(Eingabe.equals("D")){
             setPlayerPos(Eingabe);
-        } else if(Eingabe == "S"){
+        } else if(Eingabe.equals("S")){
             setPlayerPos(Eingabe);
-        } else if(Eingabe == "A"){
+        } else if(Eingabe.equals("A")){
             setPlayerPos(Eingabe);
         }
         return Player.getPosition();
@@ -50,16 +46,16 @@ public class movePlayerController{
     /* test if the player moves out of the map*/
     private boolean testEnd(String s){
         int pos = Player.getPosition();
-        if(s == "W" && (pos<deskLength)){
+        if(s.equals("W") && (pos<deskLength)){
             return true;
         }
-        if(s =="D" && ((pos +1)%deskLength == 0)){
+        if(s.equals("D") && ((pos +1)%deskLength == 0)){
             return true;
         }
-        if(s == "S" && pos > (deskLength * (deskLength-1))){
+        if(s.equals("S") && pos > (deskLength * (deskLength-1))){
             return true;
         }
-        if(s == "A" && pos%deskLength == 0){
+        if(s.equals("A") && pos%deskLength == 0){
             return true;
         }
         return false;
@@ -68,7 +64,7 @@ public class movePlayerController{
     /*test if on the way are walls*/
     private boolean testWays(String s){
         if(!testEnd(s)) {
-            oldToken = token.get(Player.getPosition());
+            token oldToken = token.get(Player.getPosition());
             if (!testWalls(0, oldToken)) {
                 token newToken = token.get(Player.getPosition() - deskLength);
                 return testWalls(2, newToken);
@@ -80,9 +76,6 @@ public class movePlayerController{
     /*test if or ifnot a wall at this site */
     private boolean testWalls(int site, token Token){
         int wall = Token.getWay(site);
-        if(wall == 1){
-            return true;
-        }
-        return false;
+        return wall == 1;
     }
 }
