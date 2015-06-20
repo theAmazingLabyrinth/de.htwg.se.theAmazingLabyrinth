@@ -1,7 +1,7 @@
 package de.htwg.theAmazingLabyrinth.model;
 
 import de.htwg.theAmazingLabyrinth.controller.controller;
-import static org.junit.Assert.*;c
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +10,7 @@ public class ControllerTest {
     controller Controller;
     int[] a = {1,0,1,0};
     token Token = new token("test", a, 0, false);
+    player Player = new player("Player 1", 0);
 
 
     @Before
@@ -22,5 +23,7 @@ public class ControllerTest {
         assertEquals(true, Controller.moveToken(1)); // warum geht das nicht?
     }
 
+    @Test
+    public void testMovePlayer(){assertEquals(true, Controller.movePlayer(Player, "W"));}
 
 }

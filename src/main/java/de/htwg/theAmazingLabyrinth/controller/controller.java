@@ -85,12 +85,13 @@ public class controller {
     }
 
 
-    public void movePlayer(player Player, String Eingabe){
+    public boolean movePlayer(player Player, String Eingabe){
         mplayer.movePlayer(token, player, Player, tokenNumbers);
         int pos = mplayer.movePl(Eingabe);
 
         player.put(Player.getPosition(), null);
         player.put(pos, Player);
+        return true;
     }
 
 }
