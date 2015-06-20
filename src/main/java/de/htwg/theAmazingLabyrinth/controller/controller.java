@@ -1,6 +1,7 @@
 package de.htwg.theAmazingLabyrinth.controller;
 
 
+import com.sun.media.jfxmedia.events.PlayerEvent;
 import de.htwg.theAmazingLabyrinth.model.desk;
 import de.htwg.theAmazingLabyrinth.model.token;
 import de.htwg.theAmazingLabyrinth.model.player;
@@ -17,6 +18,7 @@ public class controller {
     private desk Desk;
     private token Token;
     private moveTokenController mtoken;
+    private movePlayerController mplayer;
     private player Player;
 
     public controller(int anzPlayer, int tokenNumbers, token freeToken){
@@ -40,13 +42,13 @@ public class controller {
             return false;
         }
         if(anzPlayer == 3){
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 1"));
+            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 1", ((tokenNumbers-1) * tokenNumbers)-1));
         } else if(anzPlayer == 4) {
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 3"));
-            player.put((tokenNumbers * tokenNumbers)-1, new player("Player 4"));
+            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 3",((tokenNumbers-1) * tokenNumbers)-1));
+            player.put((tokenNumbers * tokenNumbers)-1, new player("Player 4", (tokenNumbers * tokenNumbers)-1));
         }
-        player.put(0, new player("Player 1"));
-        player.put(tokenNumbers -1, new player("Player 2"));
+        player.put(0, new player("Player 1", 0));
+        player.put(tokenNumbers -1, new player("Player 2", tokenNumbers - 1));
         return true;
     }
 
@@ -83,9 +85,12 @@ public class controller {
     }
 
 
-    public void movePlayer(player Player){
-        token.get(Player.getPosition());
+    public void movePlayer(player Player, String Eingabe){
+        mplayer.movePlayer(token, player, Player, tokenNumbers);
+        int pos = mplayer.movePl(Eingabe);
 
+        player.put(Player.getPosition(), null);
+        player.put(pos, Player);
     }
 
 }

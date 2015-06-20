@@ -13,8 +13,9 @@ public class player {
         this.marks = marks;
 	}
 
-	public player(String s) {
+	public player(String s, int position) {
         name = s;
+        this.position = position;
 	}
 
     /* return Name */
@@ -36,13 +37,10 @@ public class player {
         }
     }
 
-    public void setPosition(int position){
-        this.position = position;
-    }
-
     public int getPosition(){
         return position;
     }
+    public void setPosition(int pos){position = pos;}
     public void setMarks(int[] marks){
         this.marks = marks;
     }

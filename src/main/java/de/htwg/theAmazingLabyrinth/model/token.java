@@ -24,9 +24,9 @@ public class token {
     }
 
 	/* returns 1 if way is an way or 0 if way is a wall */
-	public int getWay(int way) {
-		if (way < 4 && way >= 0)
-			return ways[way];
+	public int getWay(int side) {
+		if (side < 4 && side >= 0)
+			return ways[side];
 		else
 			return -1;
 	}
