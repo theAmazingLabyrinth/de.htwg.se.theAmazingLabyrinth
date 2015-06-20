@@ -1,7 +1,5 @@
 package de.htwg.theAmazingLabyrinth.controller;
 
-
-import com.sun.media.jfxmedia.events.PlayerEvent;
 import de.htwg.theAmazingLabyrinth.model.desk;
 import de.htwg.theAmazingLabyrinth.model.token;
 import de.htwg.theAmazingLabyrinth.model.player;
@@ -14,19 +12,14 @@ public class controller {
     private Map<Integer, player> player = new HashMap<Integer, player>();
     private token freeToken;
     private int tokenNumbers;
-    private int anzPlayer;
     private desk Desk;
-    private token Token;
-    private moveTokenController mtoken;
-    private movePlayerController mplayer;
-    private player Player;
 
     public controller(int anzPlayer, int tokenNumbers, token freeToken){
-        this.anzPlayer = anzPlayer;
         this.tokenNumbers = tokenNumbers;
         Desk = new desk(this.tokenNumbers);
         this.freeToken = freeToken;
         createTokenMap();
+        createPlayerMap(anzPlayer);
     }
 
     private void createTokenMap(){
@@ -67,8 +60,9 @@ public class controller {
 
     /*Method test witch way the token get moved */
     private void testWay(int startToken, int Numbers){
+        token Token = token.get(startToken);
         int jumpPoint = 0;
-        mtoken = new moveTokenController(token, player);
+        moveTokenController mtoken = new moveTokenController(token, player);
         if((startToken%Numbers + 1) == 0 && Token.getMoveable()) { //If moved from left to right
             jumpPoint = mtoken.moveTokenToRight(startToken, Numbers);
         }
@@ -86,6 +80,7 @@ public class controller {
 
 
     public boolean movePlayer(player Player, String Eingabe){
+        movePlayerController mplayer = new movePlayerController();
         mplayer.movePlayer(token, player, Player, tokenNumbers);
         int pos = mplayer.movePl(Eingabe);
 
