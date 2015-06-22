@@ -30,18 +30,20 @@ public class playerTest {
     @Test
     public void testGetMark(){
         int[] a = {1,2,3,4,5};
-        assertEquals(a, player1.getMarks());
-        assertEquals(a, player2.getMarks());
+        int[] b = player1.getMarks();
+        for(int i = 0; i<=4; i++){
+            assertEquals(a[i], b[i]);
+        }
     }
 
     @Test
     public void testSetMark(){
-        int[] old = {1,2,3,4,5};
         int[] newer = {1,2,0,4,5};
+        int[] erg = player1.getMarks();
         player1.deleteMark(3);
-        assertEquals(newer, player1.getMarks());
-        assertEquals(newer, player3.getMarks());
-        assertNotEquals(old, player1.getMarks());
+        for (int i = 0; i<= 4; i++){
+            assertEquals(erg[i], newer[i]);
+        }
     }
 /*
     @Test
