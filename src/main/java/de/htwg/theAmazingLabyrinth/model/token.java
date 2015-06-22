@@ -26,8 +26,9 @@ public class token {
 	public int getWay(int way) {
 		if (way < 4 && way >= 0)
 			return ways[way];
-		else
+		else {
 			return -1;
+		}
 	}
 
 	/* returns the name of the token */
@@ -41,11 +42,13 @@ public class token {
 
     /* spin a token (from left to right) */
 	public int[] spin(int[] ways) {
-		ways[3] = ways[0];
+		int tmp = ways[0];
 		for (int i = 0; i <= 2; i++) {
 			ways[i] = ways[i + 1];
 		}
-		return ways;
+		ways[3] = tmp;
+		this.ways = ways;
+		return this.ways;
 	}
 
     /*creates a random Token */

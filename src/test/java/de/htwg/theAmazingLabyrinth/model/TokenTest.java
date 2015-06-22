@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class TokenTest {
 
-    token Token;
+    static token Token;
     token StandardToken;
 
     @Before
