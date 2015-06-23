@@ -2,20 +2,20 @@ package de.htwg.theAmazingLabyrinth.model;
 
 public class player {
 	private String name = "";
-    private int marks[] = new int[Integer.MAX_VALUE];
-    private int position = 0;
+    private int marks[] = new int[5];
 
     //private token siegeToken; //Test
 
-
+    /*Standard Player */
 	public player(int[] marks) {
 		name = "Standard";
         this.marks = marks;
 	}
 
-	public player(String s, int position) {
+    /*Player with a name */
+	public player(String s, int[] marks) {
         name = s;
-        this.position = position;
+        this.marks = marks;
 	}
 
     /* return Name */
@@ -28,21 +28,14 @@ public class player {
         return marks;
     }
 
-    /* set a deleted Mark to zero */
+    /* set the given Mark to zero and "delete" it*/
     public void deleteMark(int mark) {
+        System.out.println("deleteMark aufgerufen");
         for (int i = 0; i < marks.length; i++) {
             if (marks[i] == mark) {
                 marks[i] = 0;
             }
         }
-    }
-
-    public int getPosition(){
-        return position;
-    }
-    public void setPosition(int pos){position = pos;}
-    public void setMarks(int[] marks){
-        this.marks = marks;
     }
 
     /*

@@ -1,7 +1,7 @@
 package de.htwg.theAmazingLabyrinth.model;
 
 public class randomWays{
-    private int[] ways = null;
+    private int[] ways = new int[4];
     private int token = 0;
 
     public randomWays(int token) {
@@ -11,20 +11,23 @@ public class randomWays{
     }
 
     private void createRandomToken(){
-        switch (token) {
-            case 0: {
-                createIToken();
-                break;
+        if (token >= 0 && token <3) {
+            switch (token) {
+                case 0: {
+                    createIToken();
+                    break;
+                }
+                case 1: {
+                    createLToken();
+                    break;
+                }
+                case 2: {
+                    createTToken();
+                    break;
+                }
             }
-            case 1: {
-                createLToken();
-                break;
-            }
-            case 2: {
-                createTToken();
-                break;
-            }
-        }
+        } else {System.out.println("Fehler in der switch - verzweigung in der Klasse randomWays in der Methode createRandomToken");
+                System.out.println("zahl nicht >= 0 und < 3!");}
     }
 
     public int[] getWays() {
@@ -41,7 +44,7 @@ public class randomWays{
                  ways[2] = 1;
                  ways[3] = 0;
              }
-             return ways;
+        return ways;
     }
 
     private int[] createLToken() {
