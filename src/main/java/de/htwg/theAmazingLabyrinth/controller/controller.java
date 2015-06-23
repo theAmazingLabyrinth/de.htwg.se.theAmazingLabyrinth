@@ -23,7 +23,10 @@ public class controller {
     }
 
     private void createTokenMap(){
-        token[] desk = Desk.getStandardDesk();
+        token[] desk = new token[49];
+        for(int i = 0; i < desk.length; i++) {
+            desk[i] = Desk.getStandardDesk(i);
+        }
 
         for(int i = 0; i <= desk.length; i++) {
             token.put(i, desk[i]);
