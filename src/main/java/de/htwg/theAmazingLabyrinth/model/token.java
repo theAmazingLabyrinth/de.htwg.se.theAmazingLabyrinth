@@ -19,7 +19,7 @@ public class token {
     public token(String name, int token, int end){
         this.name = name;
         this.ways = createRandomToken(token);
-        this.end = end;
+		this.end = end;
     }
 
 	/* returns 1 if way is an way or 0 if way is a wall */
