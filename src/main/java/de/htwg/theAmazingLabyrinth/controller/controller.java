@@ -27,21 +27,21 @@ public class controller {
         for(int i = 0; i < desk.length; i++) {
             desk[i] = Desk.getStandardDesk(i);
         }
-
-        for(int i = 0; i <= desk.length; i++) {
+        for(int i = 0; i < desk.length; i++) {
             token.put(i, desk[i]);
         }
     }
 
     private boolean createPlayerMap(int anzPlayer){
-        if(anzPlayer < 2){
+        if(anzPlayer < 2 || anzPlayer > 4){
             return false;
         }
-        if(anzPlayer == 3){
+        if(anzPlayer >= 3){
             player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 1", ((tokenNumbers-1) * tokenNumbers)-1));
-        } else if(anzPlayer == 4) {
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 3",((tokenNumbers-1) * tokenNumbers)-1));
-            player.put((tokenNumbers * tokenNumbers)-1, new player("Player 4", (tokenNumbers * tokenNumbers)-1));
+            if(anzPlayer == 4) {
+                player.put(((tokenNumbers - 1) * tokenNumbers) - 1, new player("Player 3", ((tokenNumbers - 1) * tokenNumbers) - 1));
+                player.put((tokenNumbers * tokenNumbers) - 1, new player("Player 4", (tokenNumbers * tokenNumbers) - 1));
+            }
         }
         player.put(0, new player("Player 1", 0));
         player.put(tokenNumbers -1, new player("Player 2", tokenNumbers - 1));
@@ -66,10 +66,10 @@ public class controller {
         token Token = token.get(startToken);
         int jumpPoint = 0;
         moveTokenController mtoken = new moveTokenController(token, player);
-        if((startToken%Numbers + 1) == 0 && Token.getMoveable()) { //If moved from left to right
+        if((startToken%(Numbers + 1)) == 0 && Token.getMoveable()) { //If moved from left to right
             jumpPoint = mtoken.moveTokenToRight(startToken, Numbers);
         }
-        if(((startToken+1)%Numbers + 1) == 0 && Token.getMoveable()){ //If moved from right to left
+        if(((startToken+1)%(Numbers + 1)) == 0 && Token.getMoveable()){ //If moved from right to left
             jumpPoint = mtoken.moveTokenToLeft(startToken, Numbers);
         }
         if(startToken < Numbers + 1  && Token.getMoveable()){       //If moved from top to bottom
@@ -78,6 +78,7 @@ public class controller {
         if(startToken > (Numbers * (Numbers + 1)) && Token.getMoveable()){  //If moved from bottom to top
             jumpPoint = mtoken.moveTokenToTop(startToken, Numbers);
         }
+        System.out.println("Jumppoint: " + jumpPoint);
         mtoken.testMovePlayer(startToken, jumpPoint);
     }
 

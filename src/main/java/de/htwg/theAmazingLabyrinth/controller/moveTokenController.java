@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class moveTokenController {
     private int[] a = {1,0,1,0};
-    private token freeToken = new token("freeToken", a, 0, true);
+    private token freeToken = new token("freeToken", a, 0);
     private Map<Integer, token> token;
     private Map<Integer, player> player;
 
@@ -22,17 +22,17 @@ public class moveTokenController {
         int free = counter + number;
         freeToken = token.get(free);
         for (int i = 0; i < number; i++) {
-            token.put(counter + number - i, token.get(counter + number - (i+1)));
+            token.put(free - i, token.get(free - (i+1)));
         }
         return free;
     }
 
     /*Method to move a token from right to left */
     public int moveTokenToLeft(int counter, int number){
-        int free = counter - number -1;
+        int free = counter - number;
         freeToken = token.get(free);
-        for(int i = 1; i < number; i++){
-            token.put((counter - number - 1) + i, token.get(counter - number - 1 + i));
+        for(int i = 0; i < number; i++){
+            token.put(free + i, token.get(free + i + 1));
         }
         return free;
     }
@@ -41,19 +41,20 @@ public class moveTokenController {
     public int moveTokenToBottom(int counter, int number) {
         int free = counter + (number * (number + 1));
         freeToken = token.get(free);
-        for (int i = 1; i < number; i++) {
-            token.put(counter + (number * (number +1)), token.get(counter + ((number - i - 1) * (number +1))));
+        for (int i = 0; i < number; i++) {
+            token.put(free - (i * (number + 1)), token.get(counter + ((number - i - 1) * (number +1))));
         }
         return free;
     }
 
     /*Method to move a token from bottom to top */
     public int moveTokenToTop(int counter, int number) {
+        int free = counter - (number * (number + 1));
         freeToken = token.get(counter);
-        for (int i = 1; i < number; i++) {
-            token.put(counter, token.get(counter + ((i + 1) * (number + 1))));
+        for (int i = 0; i < number; i++) {
+            token.put(free + (i * (number +1)), token.get(free + ((i + 1) * (number + 1))));
         }
-        return counter;
+        return free;
     }
 
 

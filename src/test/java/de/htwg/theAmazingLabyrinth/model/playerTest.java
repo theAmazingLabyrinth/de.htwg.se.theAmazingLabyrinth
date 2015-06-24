@@ -15,10 +15,8 @@ public class playerTest {
     public void setUp() throws Exception {
         int[] marks = {1,2,3,4,5};
         player1 = new player(marks);
-        player2 = new player("Player 2", marks);
-        player3 = new player("Player 3", marks);
-        //player1.setToken(1);
-        //player2.setToken(2);
+        player2 = new player("Player 2", 0);
+        player3 = new player("Player 3", 0);
     }
 
     @Test

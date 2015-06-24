@@ -9,7 +9,7 @@ public class ControllerTest {
 
     controller Controller;
     int[] a = {1,0,1,0};
-    token Token = new token("test", a, 0, false);
+    token Token = new token("test", a, 0);
     player Player = new player("Player 1", 0);
 
 
@@ -20,7 +20,7 @@ public class ControllerTest {
 
     @Test
     public void testMoveTokens(){
-        assertEquals(true, Controller.moveToken(1)); // warum geht das nicht?
+        assertEquals(true, Controller.moveToken(1));
     }
 
     @Test

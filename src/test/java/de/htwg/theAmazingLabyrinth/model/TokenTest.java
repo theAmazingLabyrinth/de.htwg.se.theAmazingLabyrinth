@@ -11,7 +11,7 @@ public class TokenTest {
 
     @Before
     public void setUp() throws Exception {
-        Token = new token("TestToken", new int[]{1,0,1,0}, 0, true);
+        Token = new token("TestToken", new int[]{1,0,1,0}, 0);
         StandardToken = new token();
     }
 
@@ -34,7 +34,7 @@ public class TokenTest {
 
     @Test
     public void testRandomWays(){
-        token Token2 = new token("TestToken2", 0, 0, false);
+        token Token2 = new token("TestToken2", 0, 0);
         int test;
         for(int i = 0; i < 4; i++){
             test = Token2.getWay(i);
