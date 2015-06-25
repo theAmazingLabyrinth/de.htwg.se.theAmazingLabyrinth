@@ -33,14 +33,15 @@ public class controller {
     }
 
     private boolean createPlayerMap(int anzPlayer){
+        int max =  tokenNumbers * tokenNumbers - 1;
         if(anzPlayer < 2 || anzPlayer > 4){
             return false;
         }
         if(anzPlayer >= 3){
-            player.put(((tokenNumbers-1) * tokenNumbers)-1, new player("Player 1", ((tokenNumbers-1) * tokenNumbers)-1));
+            player.put(max, new player("Player 1", max - 1));
             if(anzPlayer == 4) {
-                player.put(((tokenNumbers - 1) * tokenNumbers) - 1, new player("Player 3", ((tokenNumbers - 1) * tokenNumbers) - 1));
-                player.put((tokenNumbers * tokenNumbers) - 1, new player("Player 4", (tokenNumbers * tokenNumbers) - 1));
+                player.put(max, new player("Player 3", max));
+                player.put(max  - (tokenNumbers -1), new player("Player 4", max - (tokenNumbers -1 )));
             }
         }
         player.put(0, new player("Player 1", 0));
@@ -69,6 +70,7 @@ public class controller {
         if((startToken%(Numbers + 1)) == 0 && Token.getMoveable()) { //If moved from left to right
             jumpPoint = mtoken.moveTokenToRight(startToken, Numbers);
         }
+
         if(((startToken+1)%(Numbers + 1)) == 0 && Token.getMoveable()){ //If moved from right to left
             jumpPoint = mtoken.moveTokenToLeft(startToken, Numbers);
         }
@@ -78,19 +80,34 @@ public class controller {
         if(startToken > (Numbers * (Numbers + 1)) && Token.getMoveable()){  //If moved from bottom to top
             jumpPoint = mtoken.moveTokenToTop(startToken, Numbers);
         }
-        System.out.println("Jumppoint: " + jumpPoint);
         mtoken.testMovePlayer(startToken, jumpPoint);
     }
 
-
+    /*moves the player*/
     public boolean movePlayer(player Player, String Eingabe){
+        System.out.println(player);
+        player tmp = new player(Player.getName(), Player.getPosition());
         movePlayerController mplayer = new movePlayerController();
         mplayer.movePlayer(token, player, Player, tokenNumbers);
         int pos = mplayer.movePl(Eingabe);
-
-        player.put(Player.getPosition(), null);
-        player.put(pos, Player);
+        if(free(pos)) {
+            player.remove(tmp.getPosition());
+            player.put(pos, Player);
+        }
+        System.out.println(player);
         return true;
     }
 
+    /*actual only a method to set a player were we want him, get deleted after the finish of the game*/
+    public void setPlayer(player Player, int pos){
+        player.put(pos, Player);
+    }
+
+    /*looks if the field is free and u can walk on it*/
+    private boolean free(int pos){
+        if(player.get(pos) != null){
+            return false;
+        }
+        return true;
+    }
 }

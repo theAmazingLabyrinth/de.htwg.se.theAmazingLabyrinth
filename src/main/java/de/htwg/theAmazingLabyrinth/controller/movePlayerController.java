@@ -7,14 +7,12 @@ import java.util.Map;
 
 public class movePlayerController{
     private player Player;
-    private Map<Integer, player> player = new HashMap<Integer, player>();
     private Map<Integer, token> token = new HashMap<Integer, token>();
 
     private int deskLength;
 
 
-    public void movePlayer(Map<Integer, token> token, Map<Integer, player> player, player Player, int deskLength){
-        this.player = player;
+    public void movePlayer(Map<Integer, token> token, player Player, int deskLength){
         this.Player = Player;
         this.token = token;
         this.deskLength = deskLength;
@@ -22,60 +20,135 @@ public class movePlayerController{
 
     /*Method move the player*/
     public int movePl(String Eingabe){
+        int move = 0;
         if(Eingabe.equals("W")){
-            setPlayerPos(Eingabe);
+            move = setPlayerPos(Eingabe);
         } else if(Eingabe.equals("D")){
-            setPlayerPos(Eingabe);
+            move = setPlayerPos(Eingabe);
         } else if(Eingabe.equals("S")){
-            setPlayerPos(Eingabe);
+            move = setPlayerPos(Eingabe);
         } else if(Eingabe.equals("A")){
-            setPlayerPos(Eingabe);
+            move = setPlayerPos(Eingabe);
         }
-        return Player.getPosition();
+        return move;
     }
 
     /*set Player pos if no walls or end in the way*/
-    private void setPlayerPos(String s){
-        if(!testWays(s)) {
-            int pos = Player.getPosition();
-            player.put(pos - deskLength, Player);
-            Player.setPosition(pos - deskLength);
+    private int setPlayerPos(String s){
+        if(testWays(s)) {
+            return newPlayerPosition(s);
+        } else return 0;
+    }
+
+
+    /*test if on the way are walls*/
+    private boolean testWays(String s){
+        if(testEnd(s)) {
+            token oldToken = token.get(Player.getPosition());
+            if (testWalls(s, oldToken, true)) {
+                token newToken = getNewPlayerToken(s);
+                return testWalls(s, newToken, false);
+            }
         }
+        return false;
     }
 
     /* test if the player moves out of the map*/
     private boolean testEnd(String s){
         int pos = Player.getPosition();
         if(s.equals("W") && (pos<deskLength)){
-            return true;
+            return false;
         }
         if(s.equals("D") && ((pos +1)%deskLength == 0)){
-            return true;
+            return false;
         }
-        if(s.equals("S") && pos > (deskLength * (deskLength-1))){
-            return true;
+        if(s.equals("S") && pos >= (deskLength * (deskLength-1))){
+            return false;
         }
-        if(s.equals("A") && pos%deskLength == 0){
-            return true;
+        if(s.equals("A") && (pos%deskLength) == 0){
+            return false;
         }
-        return false;
-    }
-
-    /*test if on the way are walls*/
-    private boolean testWays(String s){
-        if(!testEnd(s)) {
-            token oldToken = token.get(Player.getPosition());
-            if (!testWalls(0, oldToken)) {
-                token newToken = token.get(Player.getPosition() - deskLength);
-                return testWalls(2, newToken);
-            }
-        }
-        return false;
+        return true;
     }
 
     /*test if or ifnot a wall at this site */
-    private boolean testWalls(int site, token Token){
-        int wall = Token.getWay(site);
-        return wall == 1;
+    private boolean testWalls(String s , token Token, boolean firstway){
+        int side = 0;
+        if(firstway) {
+            side = checkfirstWay(s);
+        } else if(!firstway){
+            side = checksecondWay(s);
+        }
+        /////////////////////////////////
+        System.out.print(" Token: ");
+        for(int i = 0; i < 4; i++){
+            System.out.print(Token.getWay(i));
+        }
+        System.out.println();
+        /////////////////////////////////////7
+        if(Token.getWay(side) != 0){
+            return true;
+        }
+        return false;
+    }
+
+    /* looks with side the walls must get tested*/
+    private int checkfirstWay(String s){
+        int back = -1;
+        if(s.equals("W")){
+            back = 0;
+        } else if(s.equals("D")){
+            back = 1;
+        } else if(s.equals("S")){
+            back = 2;
+        } else if(s.equals("A")){
+            back = 3;
+        }
+        return back;
+    }
+
+    /*looks with side the walls of the next token must get tested*/
+    private int checksecondWay(String s){
+        int back = -1;
+        if(s.equals("W")){
+            back = 2;
+        } else if(s.equals("D")){
+            back = 3;
+        } else if(s.equals("S")){
+            back = 0;
+        } else if(s.equals("A")){
+            back = 1;
+        }
+        return back;
+    }
+
+    /*return the second token from witch the walls must get tested*/
+    private token getNewPlayerToken(String s){
+        token Token = null;
+        if(s.equals("W")){
+            Token = token.get(Player.getPosition() - deskLength);
+        } else if(s.equals("D")){
+            Token = token.get(Player.getPosition() + 1);
+        } else if(s.equals("S")){
+            Token = token.get(Player.getPosition() + deskLength);
+        } else if(s.equals("A")){
+            Token = token.get((Player.getPosition() - 1));
+        }
+        return Token;
+    }
+
+    /*get the new position of the player*/
+    private int newPlayerPosition(String s){
+        int pos = -1;
+        if(s.equals("W")){
+            pos = Player.getPosition() - deskLength;
+        } else if(s.equals("D")){
+            pos = Player.getPosition() + 1;
+        } else if(s.equals("S")){
+            pos = Player.getPosition() + deskLength;
+        } else if(s.equals("A")){
+            pos = Player.getPosition() - 1;
+        }
+        return pos;
     }
 }
