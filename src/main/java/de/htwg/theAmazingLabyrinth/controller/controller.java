@@ -6,7 +6,7 @@ import de.htwg.theAmazingLabyrinth.model.player;
 import java.util.HashMap;
 import java.util.Map;
 
-public class controller {
+public class controller implements Icontroller{
 
     private Map<Integer, token> token = new HashMap<Integer, token>();
     private Map<Integer, player> player = new HashMap<Integer, player>();
@@ -50,6 +50,7 @@ public class controller {
     }
 
     /* move token */
+    @Override
     public boolean moveToken(int startToken){
         token tmp = token.get(startToken);
         token oldFreeToken = freeToken;
@@ -84,11 +85,12 @@ public class controller {
     }
 
     /*moves the player*/
+    @Override
     public boolean movePlayer(player Player, String Eingabe){
         System.out.println(player);
         player tmp = new player(Player.getName(), Player.getPosition());
         movePlayerController mplayer = new movePlayerController();
-        mplayer.movePlayer(token, player, Player, tokenNumbers);
+        mplayer.movePlayer(token, Player, tokenNumbers);
         int pos = mplayer.movePl(Eingabe);
         if(free(pos)) {
             player.remove(tmp.getPosition());
