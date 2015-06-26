@@ -22,6 +22,13 @@ public class controller {
         createPlayerMap(anzPlayer);
     }
 
+    public Map<Integer, token> getToken(){
+        return token;
+    }
+    public Map<Integer, player> getPlayer(){
+        return player;
+    }
+
     private void createTokenMap(){
         token[] desk = new token[49];
         for(int i = 0; i < desk.length; i++) {
@@ -88,7 +95,7 @@ public class controller {
         System.out.println(player);
         player tmp = new player(Player.getName(), Player.getPosition());
         movePlayerController mplayer = new movePlayerController();
-        mplayer.movePlayer(token, player, Player, tokenNumbers);
+        mplayer.movePlayer(token, Player, tokenNumbers);
         int pos = mplayer.movePl(Eingabe);
         if(free(pos)) {
             player.remove(tmp.getPosition());
