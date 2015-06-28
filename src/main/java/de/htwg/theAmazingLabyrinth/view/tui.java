@@ -40,11 +40,10 @@ public class tui {
     public static void printTUI(){
         //logger.info(newLine + controller.getGridString());
         //logger.info(newLine + controller.getStatus());
-
-
         createDesk(7);
     }
 
+    /*create the desk*/
     private static void createDesk(int desklength){
         Map<Integer, token> token;
         Map<Integer, player> player;
@@ -52,12 +51,53 @@ public class tui {
         controller Controller = new controller(4,desklength, Token);
         token = Controller.getToken();
         player = Controller.getPlayer();
+        int counter = 0;
+        int e = 0;
+        int w = 0;
         for(int i = 0; i < token.size(); i++) {
             createToken(token.get(i));
-            desk.add(tokenfield);
+            desk.add(i, tokenfield);
+
+            String[] tmp = desk.get(i);
+            while(e < 3){
+                while(w < 3){
+                    System.out.print(tmp[counter]);
+                    counter++;
+                    w++;
+                }
+                e++;
+                w = 0;
+                System.out.println();
+            }
         }
+/*
+        String[] ar = new String[21];
+        String[] tmp;
+        int arCounter = 0;
+        for(int i = 0; i < desklength; i++){
+            tmp = desk.get(i);
+            ar[arCounter] = tmp[0];
+            ar[arCounter+1] = tmp[1];
+            ar[arCounter+2] = tmp[2];
+            arCounter +=3;
+        }
+        for(int c = 0; c < ar.length; c++) {
+            System.out.print(ar[c]);
+        }*/
+
+        int counterToken = 8;
+        String[] tmp = desk.get(1);
+        for(int i  = 0; i < 3; i++){
+            for(int j = 0; j  < 3; j++){
+                System.out.print(tmp[counterToken]);
+                counterToken--;
+            }
+            System.out.println();
+        }
+
     }
 
+    /*create one Token*/
     private static void createToken(token Token){
         tokenfield[0] = "X";
         tokenfield[2] = "X";
@@ -68,12 +108,13 @@ public class tui {
         for (int i = 0; i < 4 ; i++) {
             words[i] = Token.getWay(i);
         }
-        transformWordsIntoString(words);
+        transformIntIntoString(words);
         String mark = getMarkofToken(Token);
         tokenfield[4] = mark;
     }
 
-    private static void transformWordsIntoString(int[] words){
+    /*transform the Int - Value of a token into a String - Value*/
+    private static void transformIntIntoString(int[] words){
         String[] s = new String[4];
         for(int i = 0; i<words.length; i++){
             if(words[i] == 0){
@@ -88,9 +129,10 @@ public class tui {
         tokenfield[3] = s[3];   //3
     }
 
+    /*get the Mark of a Token as a String - Value*/
     private static String getMarkofToken(token Token){
         int tmp = Token.getEnd();
-        if(tmp == 0 || tmp == 1 || tmp == 2 || tmp == 3 || tmp == 4){
+        if(tmp <= 4){
             return " ";
         }
         String[] names = {"1","2","3","4","5","6","7","8","9","!","§", "%","&",
@@ -102,6 +144,4 @@ public class tui {
         }
         return null;
     }
-
-
 }
